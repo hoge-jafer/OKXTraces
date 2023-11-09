@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>D:\Lexan\OpenSourceCode\OKXSolution\OKX.UI\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+    <ShowAllFiles>false</ShowAllFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\AccountBalanceView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AccountPositionsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AssetAssetValuationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AssetBalancesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AssetCurrenciesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MarketIndexTickersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MarketTickersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MarketTickerView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ShellView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ShellView2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TradeOrderView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CommonDictionary\ButtonDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AccountBalanceView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AccountPositionsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AssetAssetValuationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AssetBalancesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AssetCurrenciesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MarketIndexTickersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MarketTickersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MarketTickerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ShellView2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TradeOrderView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,526 @@
+﻿<Page x:Class="OKX.UI.Views.MarketTickerView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:OKX.UI.Views"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Opacity="0.75"
+      Background="Black"
+      Title="MarketTickerView">
+    <Grid Background="Transparent">
+        <!--大屏模式-->
+        <!--Visibility="{Binding MaxContentVisibility,UpdateSourceTrigger=PropertyChanged}"-->
+        <Grid Visibility="{Binding MaxContentVisibility,UpdateSourceTrigger=PropertyChanged}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*" />
+                <!--<RowDefinition Height="0.2*" />-->
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button Grid.Column="0"
+                        Grid.Row="0"
+                        Margin="2"
+                        Style="{StaticResource ButtonStyleNew}"
+                        Content="涨"
+                        Foreground="White"
+                        Cursor="Hand"
+                        x:Name="Rise"></Button>
+                <TextBox Grid.Column="0"
+                         Grid.Row="1"
+                         Text="{Binding RiseAmplitude,IsAsync=True,UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         FontSize="24"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Margin="3"
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         Foreground="Red" />
+                <Button Grid.Column="1"
+                        Grid.Row="0"
+                        Margin="2"
+                        Style="{StaticResource ButtonStyleNew}"
+                        Content="跌"
+                        Foreground="White"
+                        x:Name="Fall" />
+                <TextBox Grid.Column="1"
+                         Grid.Row="1"
+                         Text="{Binding FallAmplitude,IsAsync=True,UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         FontSize="24"
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         Margin="3"
+                         BorderBrush="Transparent"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         Foreground="Green" />
+            </Grid>
+            <!--显示集合-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.7*" />
+                            <ColumnDefinition Width="1*" />
+                            <!--<ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />-->
+                            <!--<ColumnDefinition Width="1*" />-->
+                            <!--<ColumnDefinition Width="1*" />-->
+                            <!--<ColumnDefinition Width="1*" />-->
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   Text="ID"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontSize="24"
+                                   Margin="0 0 0 0"
+                                   Foreground="White"></TextBlock>
+                        <TextBlock Grid.Column="1"
+                                   Text="最新成交价"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontSize="24"
+                                   Foreground="White"></TextBlock>
+                        <!--<TextBlock Grid.Column="2"
+                               Text="买一价的挂单数量"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 0"
+                               FontSize="18"
+                               Foreground="Black"></TextBlock>-->
+                        <!--<TextBlock Grid.Column="2"
+                               Text="24小时最高价"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 0"
+                               FontSize="18"
+                               Foreground="Black"></TextBlock>-->
+                        <!--<TextBlock Grid.Column="3"
+                               Text="24小时最低价"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 0"
+                               FontSize="18"
+                               Foreground="Black"></TextBlock>-->
+                        <!--<TextBlock Grid.Column="2"
+                               Text="UTC 0:00"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               FontSize="24"
+                               Foreground="White"></TextBlock>
+                    <TextBlock Grid.Column="3"
+                               Text="UTC 8:00"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               FontSize="24"
+                               Foreground="White"></TextBlock>-->
+                        <!--<TextBlock />-->
+                    </Grid>
+                    <ListBox ItemsSource="{Binding RiseMarketTickerEntityModels,UpdateSourceTrigger=PropertyChanged}"
+                             Grid.Row="2"
+                             Grid.Column="1"
+                             BorderBrush="Transparent"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                             HorizontalContentAlignment="Stretch"
+                             VerticalContentAlignment="Stretch"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             SelectionMode="Single"
+                             Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <!--<ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />-->
+                                        <!--<ColumnDefinition Width="1*" />-->
+                                        <!--<ColumnDefinition Width="1*" />-->
+                                        <!--<ColumnDefinition Width="1*" />-->
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding instId,UpdateSourceTrigger=PropertyChanged}"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               FontSize="60"
+                                               Foreground="Red"></TextBlock>
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding last,UpdateSourceTrigger=PropertyChanged}"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               FontSize="60"
+                                               Foreground="Red"></TextBlock>
+                                    <!--<TextBlock Grid.Column="2"
+                                           Text="{Binding open24h,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 0 0"
+                                           FontSize="18"
+                                           Foreground="Red"></TextBlock>-->
+                                    <!--<TextBlock Grid.Column="2"
+                                           Text="{Binding high24h,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 0 0"
+                                           FontSize="18"
+                                           Foreground="Red"></TextBlock>-->
+                                    <!--<TextBlock Grid.Column="3"
+                                           Text="{Binding low24h,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 0 0"
+                                           FontSize="18"
+                                           Foreground="Red"></TextBlock>-->
+                                    <!--<TextBlock Grid.Column="2"
+                                           Text="{Binding sodUtc0,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           FontSize="30"
+                                           Foreground="Red"></TextBlock>
+                                <TextBlock Grid.Column="3"
+                                           Text="{Binding sodUtc8,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           FontSize="30"
+                                           Foreground="Red"></TextBlock>-->
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.7*" />
+                            <ColumnDefinition Width="1*" />
+                            <!--<ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />-->
+                            <!--<ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />-->
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   Text="ID"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 0 0"
+                                   FontSize="24"
+                                   Foreground="White"></TextBlock>
+                        <TextBlock Grid.Column="1"
+                                   Text="最新成交价"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontSize="24"
+                                   Foreground="White"></TextBlock>
+                        <!--<TextBlock Grid.Column="2"
+                               Text="买一价的挂单数量"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 0"
+                               FontSize="18"
+                               Foreground="Black"></TextBlock>-->
+                        <!--<TextBlock Grid.Column="3"
+                               Text="24小时最高价"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 0"
+                               FontSize="18"
+                               Foreground="Black"></TextBlock>-->
+                        <!--<TextBlock Grid.Column="4"
+                               Text="24小时最低价"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Margin="0 0 0 0"
+                               FontSize="18"
+                               Foreground="Black"></TextBlock>-->
+                        <!--<TextBlock Grid.Column="2"
+                               Text="UTC 0:00"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               FontSize="24"
+                               Foreground="White"></TextBlock>
+                    <TextBlock Grid.Column="3"
+                               Text="UTC 8:00"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               FontSize="24"
+                               Foreground="White"></TextBlock>-->
+                        <!--<TextBlock />-->
+                    </Grid>
+                    <ListBox ItemsSource="{Binding FallMarketTickerEntityModels,UpdateSourceTrigger=PropertyChanged}"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             BorderBrush="Transparent"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                             HorizontalContentAlignment="Stretch"
+                             VerticalContentAlignment="Stretch"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             SelectionMode="Single"
+                             Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <!--<ColumnDefinition Width="1*" />-->
+                                        <!--<ColumnDefinition Width="1*" />-->
+                                        <!--<ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />-->
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding instId,UpdateSourceTrigger=PropertyChanged}"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               FontSize="60"
+                                               Foreground="Green"></TextBlock>
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding last,UpdateSourceTrigger=PropertyChanged}"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               FontSize="60"
+                                               Foreground="Green"></TextBlock>
+                                    <!--<TextBlock Grid.Column="2"
+                                           Text="{Binding open24h,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 0 0"
+                                           FontSize="18"
+                                           Foreground="Green"></TextBlock>-->
+                                    <!--<TextBlock Grid.Column="3"
+                                           Text="{Binding high24h,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 0 0"
+                                           FontSize="18"
+                                           Foreground="Green"></TextBlock>-->
+                                    <!--<TextBlock Grid.Column="4"
+                                           Text="{Binding low24h,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 0 0"
+                                           FontSize="18"
+                                           Foreground="Green"></TextBlock>-->
+                                    <!--<TextBlock Grid.Column="2"
+                                           Text="{Binding sodUtc0,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           FontSize="30"
+                                           Foreground="Green"></TextBlock>
+                                <TextBlock Grid.Column="3"
+                                           Text="{Binding sodUtc8,UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           FontSize="30"
+                                           Foreground="Green"></TextBlock>-->
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
+            <!--涨-->
+            <Grid Grid.Row="1"
+                  Visibility="{Binding RiseVisibilitys,UpdateSourceTrigger=PropertyChanged}"
+                  Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            Grid.Row="0"
+                            Margin="5"
+                            Style="{StaticResource ButtonStyleNew}"
+                            Content="添加"
+                            Foreground="White"
+                            Cursor="Hand"
+                            x:Name="RiseAddTicker" />
+                    <Button Grid.Column="1"
+                            Grid.Row="0"
+                            Margin="5"
+                            Style="{StaticResource ButtonStyleNew}"
+                            Content="删除"
+                            Foreground="White"
+                            Cursor="Hand"
+                            x:Name="RiseDeleteTicker" />
+                    <TextBox Grid.ColumnSpan="2"
+                             Grid.Row="1"
+                             Text="{Binding RisePercentage,IsAsync=True}"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             FontSize="24"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Margin="3"
+                             BorderBrush="Transparent"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             Foreground="Red" />
+                </Grid>
+                <Grid Grid.Row="1"
+                      Background="Transparent"
+                      Margin="5">
+                    <ListBox Background="Transparent"
+                             ItemsSource="{Binding RiseEntityModels,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding RiseEntityModel,UpdateSourceTrigger=PropertyChanged}"
+                             HorizontalContentAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0"
+                                             Text="{Binding CoinName,UpdateSourceTrigger=PropertyChanged}"
+                                             Height="50"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch"
+                                             FontSize="24"
+                                             HorizontalContentAlignment="Center"
+                                             VerticalContentAlignment="Center"
+                                             Margin="3" />
+                                    <TextBox Grid.Column="1"
+                                             Text="{Binding CoinPrice,UpdateSourceTrigger=PropertyChanged}"
+                                             Height="50"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch"
+                                             FontSize="24"
+                                             HorizontalContentAlignment="Center"
+                                             VerticalContentAlignment="Center"
+                                             Margin="3" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
+            <!--跌-->
+            <Grid Grid.Row="1"
+                  Visibility="{Binding FallVisibilitys,UpdateSourceTrigger=PropertyChanged}"
+                  Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="167*" />
+                        <ColumnDefinition Width="33*" />
+                        <ColumnDefinition Width="200*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            Grid.Row="0"
+                            Margin="5,5,5,5"
+                            Style="{StaticResource ButtonStyleNew}"
+                            Content="添加"
+                            Foreground="White"
+                            Cursor="Hand"
+                            x:Name="FallAddTicker"
+                            Grid.ColumnSpan="2" />
+                    <Button Grid.Column="2"
+                            Grid.Row="0"
+                            Margin="5,5,5,5"
+                            Style="{StaticResource ButtonStyleNew}"
+                            Content="删除"
+                            Foreground="White"
+                            Cursor="Hand"
+                            x:Name="FallDeleteTicker" />
+                    <TextBox Grid.ColumnSpan="3"
+                             Grid.Row="1"
+                             Text="{Binding FallPercentage,IsAsync=True}"
+                             FontSize="24"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Margin="3,3,3,3"
+                             BorderBrush="Transparent"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             Foreground="Green" />
+                </Grid>
+                <Grid Grid.Row="1"
+                      Background="Transparent"
+                      Margin="5">
+                    <ListBox Background="Transparent"
+                             ItemsSource="{Binding FallEntityModels,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding FallEntityModel,UpdateSourceTrigger=PropertyChanged}"
+                             HorizontalContentAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0"
+                                             Text="{Binding CoinName,UpdateSourceTrigger=PropertyChanged}"
+                                             Height="50"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch"
+                                             FontSize="24"
+                                             HorizontalContentAlignment="Center"
+                                             VerticalContentAlignment="Center"
+                                             Margin="3" />
+                                    <TextBox Grid.Column="1"
+                                             Text="{Binding CoinPrice,UpdateSourceTrigger=PropertyChanged}"
+                                             Height="50"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch"
+                                             FontSize="24"
+                                             HorizontalContentAlignment="Center"
+                                             VerticalContentAlignment="Center"
+                                             Margin="3" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

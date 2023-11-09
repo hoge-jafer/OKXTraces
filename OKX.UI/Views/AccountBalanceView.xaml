@@ -1,0 +1,156 @@
+﻿<Page x:Class="OKX.UI.Views.AccountBalanceView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:OKX.UI.Views"
+      mc:Ignorable="d"
+      xmlns:cal="http://www.caliburnproject.org"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="AccountBalanceView"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <Grid Background="Transparent">
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="AccountBalanceViewModel"/>
+        <Frame cal:Message.Attach="RegisterFrame($source)"
+               DataContext="{x:Null}"
+               NavigationUIVisibility="Hidden"
+               Grid.Column="1" />-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <!--<ColumnDefinition Width="1*" />-->
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Foreground="Black"
+                       Text="币种图标" />
+            <TextBlock Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Foreground="Black"
+                       Text="币种" />
+            <!--<TextBlock Grid.Column="2"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Foreground="Black"
+                       Text="可用余额" />-->
+            <TextBlock Grid.Column="2"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Foreground="Black"
+                       Text="币种余额" />
+            <TextBlock Grid.Column="3"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Foreground="Black"
+                       Text="币种总权益" />
+            <TextBlock Grid.Column="4"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       Foreground="Black"
+                       Text="币种权益美金价值" />
+        </Grid>
+        <ListBox ItemsSource="{Binding AccountBalanceEntityModels,UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 BorderBrush="Transparent"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 HorizontalContentAlignment="Stretch"
+                 SelectionMode="Single"
+                 Background="Transparent">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <!--<ColumnDefinition Width="1*" />-->
+                        </Grid.ColumnDefinitions>
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>-->
+                        <Image Grid.Column="0"
+                                   Source="{Binding coinPath,UpdateSourceTrigger=PropertyChanged}"
+                               HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 0 0"
+                               Height="100"
+                               Width="100"></Image>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding ccy,UpdateSourceTrigger=PropertyChanged}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 0 0"
+                                   FontSize="18"
+                                   Foreground="Black"></TextBlock>
+                        <!--<TextBlock Grid.Column="2"
+                                   Text="{Binding availBal,UpdateSourceTrigger=PropertyChanged}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"
+                                   Foreground="Black"></TextBlock>-->
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding cashBal,UpdateSourceTrigger=PropertyChanged}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 0 0"
+                                   FontSize="18"
+                                   Foreground="Black"></TextBlock>
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding eq,UpdateSourceTrigger=PropertyChanged}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 0 0"
+                                   FontSize="18"
+                                   Foreground="Black"></TextBlock>
+                        <TextBlock Grid.Column="4"
+                                   Text="{Binding eqUsd,UpdateSourceTrigger=PropertyChanged}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"
+                                   Foreground="Black"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <!--<ListBox.Template>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <WrapPanel Orientation="Horizontal"
+                                   IsItemsHost="True"
+                                   ScrollViewer.CanContentScroll="True" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ListBox.Template>-->
+        </ListBox>
+    </Grid>
+</Page>
