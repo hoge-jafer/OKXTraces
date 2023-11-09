@@ -122,9 +122,7 @@ namespace OKX.UI.ViewModels
 
         public double trackrecordprice;
 
-        //private string apiKey = "f8f6a157-357a-40f6-ad3a-ef72f2fa9003";
-        //private string secret = "DCB9C33D6DD32E0F04C9B891435DDDA1";
-        //private string passPhrase = "test321";
+ 
 
         private string apiKey = "";
 

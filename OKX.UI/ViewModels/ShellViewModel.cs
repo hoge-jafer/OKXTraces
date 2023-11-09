@@ -166,7 +166,7 @@ namespace OKX.UI.ViewModels
             navigationService = new FrameAdapter(frame);
 
             container.Instance(navigationService);
-            //navigationService.NavigateToViewModel(typeof(AccountBalanceViewModel));
+
         }
 
         public void MiniRegisterFrame(Frame frame)
