@@ -70,6 +70,10 @@ namespace OKX.UI.ViewModels
         }
 
         #region 变量
+
+
+
+
         private void backgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             while (true)
@@ -605,88 +609,38 @@ namespace OKX.UI.ViewModels
                 //requestParameters["reduceOnly"] = "";
                 //requestParameters["px"] = "";
                 //AccountApi accountApi = new AccountApi(apiKey, secret, passPhrase);
-                //获取方案一
-                Task<string> task = accountApi.GetMaximumTradableSizeForInstrument(requestParameters);
-                var result = await task;
-                MaximumAvailableTradableAmountsEntityModel maximumAvailableTradableAmount = JsonConvert.DeserializeObject<MaximumAvailableTradableAmountsEntityModel>(result);
 
+
+                #region //获取方案二
+
+                Task<string> task = accountApi.GetMaximumAvailableTradableAmount(requestParameters);
+                var result = await task;
+                MaximumAvailableTradableAmountEntityModel maximumAvailableTradableAmount = JsonConvert.DeserializeObject<MaximumAvailableTradableAmountEntityModel>(result);
                 if (maximumAvailableTradableAmount.code == "0")
                 {
                     try
                     {
-                        var maxBuy = maximumAvailableTradableAmount.data[0].maxBuy;
-                        var maxSell = maximumAvailableTradableAmount.data[0].maxSell;
-                        double buy = Convert.ToDouble(maxBuy);
-                        double sell = Convert.ToDouble(maxSell);
-                        if (buy > 0.1)
+                        var availBuy = maximumAvailableTradableAmount.data[0].availBuy;
+                        var availSell = maximumAvailableTradableAmount.data[0].availSell;
+                        double buy = Convert.ToDouble(availBuy);
+                        double sell = Convert.ToDouble(availSell);
+                        if (buy > 1)
                         {
                             results = buy;
                             buyAvailableTradableAmount = buy;
-                            trackrecordprice = buy;
                         }
-                        if (buy < 0.1)
+                        if (sell > 1)
                         {
-                            if (ccy != "USDT" && availEq > 0.1)
-                            {
-                                sellAvailableTradableAmount = availEq;
-                            }
+                            results = sell;
+                            sellAvailableTradableAmount = sell;
                         }
-                        if (buy < 0.1 && sell > 0)
-                        {
-                            var pieces = sellAvailableTradableAmount / lastprice;
-                            sellAvailableTradableAmount = pieces;
-                        }
-
-                        //if (sell > 0.1)
-                        //{
-                        //    results = sell;
-                        //    sellAvailableTradableAmount = sell;
-                        //    if (buy > 0.1)
-                        //    {
-                        //        trackrecordprice = buy;
-                        //    }
-                        //}
-                        LogHelper.WriteLog(" AvailableTradableAmount  maxBuy:" + maxBuy, LogState);
-                        LogHelper.WriteLog(" AvailableTradableAmount  maxSell:" + maxSell, LogState);
-                        LogHelper.WriteLog(" AvailableTradableAmount  buyAvailableTradableAmount:" + buyAvailableTradableAmount, LogState);
-                        LogHelper.WriteLog(" AvailableTradableAmount  sellAvailableTradableAmount:" + sellAvailableTradableAmount, LogState);
                     }
                     catch (Exception ex)
                     {
                         LogHelper.WriteLog(":" + ex.Message, LogState);
                     }
                 }
-
-                #region //获取方案二
-
-                //Task<string> task = accountApi.GetMaximumAvailableTradableAmount(requestParameters);
-                //var result = await task;
-                //MaximumAvailableTradableAmountEntityModel maximumAvailableTradableAmount = JsonConvert.DeserializeObject<MaximumAvailableTradableAmountEntityModel>(result);
-                //if (maximumAvailableTradableAmount.code == "0")
-                //{
-                //    try
-                //    {
-                //        var availBuy = maximumAvailableTradableAmount.data[0].availBuy;
-                //        var availSell = maximumAvailableTradableAmount.data[0].availSell;
-                //        double buy = Convert.ToDouble(availBuy);
-                //        double sell = Convert.ToDouble(availSell);
-                //        if (buy > 1)
-                //        {
-                //            results = buy;
-                //            buyAvailableTradableAmount = buy;
-                //        }
-                //        if (sell > 1)
-                //        {
-                //            results = sell;
-                //            sellAvailableTradableAmount = sell;
-                //        }
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        LogHelper.WriteLog(":" + ex.Message,LogState);
-                //    }
-                //}
-                //availableTradableAmount = results;
+                availableTradableAmount = results;
 
                 #endregion
             }
